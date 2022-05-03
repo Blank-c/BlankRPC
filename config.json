@@ -1,0 +1,13 @@
+[{
+    "name" : "TITLE_OF_YOUR_GAME",
+    "type" : 0,
+    "application_id" : 123456,
+    "timestamps" : {
+        "start" : 1651586846
+                },
+    "state" : "CURRENT_STATE",
+    "details" : "DETAILS",
+    "party" : {
+        "size" : [0, 69]
+         }
+}]

@@ -1,0 +1,29 @@
+The name field contains the title of your game, it can be anything and must be enclosed within double quotes.
+        
+The type can contain the following numbers (only one of them at a time):
+        
+        0 - Playing status
+        1 - Streaming status
+        2 - Listening status
+        3 - Watching status
+        5 - Competing status
+        
+The application_id contains the ID of application made in your account. How do you get it? Well, here is the answer: 
+        
+1) Go to "https://discord.com/developers/applications".
+2) Click on "New Application".
+3) Name it anything.
+4) The "APP ICON" is the image that will be shown in your playing status. Upload any image from your device to it if you want any image to be shown.
+5) Press the save button.
+6) Scroll down and copy the "Application ID".
+7) Replace the 123456 in this file with the ID of your application (or it will not work).
+        
+Now what about start timestamp? Just place the current unix timestamp in it (Search for it on google). It should be an integer, not decimal.
+        
+state - Anything enclosed within double quotes.
+
+details - Anything enclosed within double quotes.
+        
+size - Array of (current players in party, party size). If state is null then the size will not be shown in the RPC.
+        
+NOTE: You can put null in value of state, details, size, start if you don't want them.
