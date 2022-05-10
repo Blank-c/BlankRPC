@@ -20,8 +20,7 @@ class InvalidSession(Exception): #9
     """Gateway limit exceeded, try again after some time!"""
 
 config[0]["assets"] = {"large_text" : "BlankRPC"}
-config[0]["url"] = "https://youtube.com/channel/UCKZJEX2VifHDOpuN1KU16Gw"
-
+config[0]["url"] = "https://twitch.tv/BlankMCPE"
 """No changes are recommended in the above two values"""
 
 def get_headers(auth = None):
@@ -29,8 +28,13 @@ def get_headers(auth = None):
         'user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 RuxitSynthetic/1.0 v6495571190082640575 t5902745343625328559 ath1fb31b7a altpriv cvcv=2 smf=0'
     }
     if auth:
-        headers['authorization'] = auth
+        headers['Authorization'] = auth
     return headers
+
+def credit():
+    time.sleep(1)
+    os.system('clear' if os.name!='nt' else 'cls')
+    print("\x1b[31;1mh\x1b[32;1mt\x1b[33;1mt\x1b[34;1mp\x1b[35;1ms\x1b[36;1m:\x1b[31;1m/\x1b[32;1m/\x1b[33;1mg\x1b[34;1mi\x1b[35;1mt\x1b[36;1mh\x1b[31;1mu\x1b[32;1mb\x1b[33;1m.\x1b[34;1mc\x1b[35;1mo\x1b[36;1mm\x1b[31;1m/\x1b[32;1mB\x1b[33;1ml\x1b[34;1ma\x1b[35;1mn\x1b[36;1mk\x1b[31;1m-\x1b[32;1mc\x1b[33;1m/\x1b[34;1mB\x1b[35;1ml\x1b[36;1ma\x1b[31;1mn\x1b[32;1mk\x1b[33;1mR\x1b[34;1mP\x1b[35;1mC\x1b[36;1m/\x1b[0m\n")
 
 def receive(socket):
     resp = socket.recv()
@@ -127,9 +131,10 @@ def heartbeat(socket, interval = None, emergency = False):
         threading.Thread(target=heartbeat_ack, args=(socket,)).start()
         
 if not token or requests.get('https://discord.com/api/v9/users/@me', headers = get_headers(token)).status_code != 200:
-    print("Invalid Token")
+    print("\u001b[30;1mInvalid Token\u001b[0m")
     os._exit(1)
-    
+
+credit()
 while True:
     ws = websocket.WebSocket()
     try:
@@ -146,11 +151,9 @@ while True:
             connect(ws)
         else:
             resume(ws)
-        print("Connected!")
+        print("\u001b[32;1mConnected!\u001b[0m")
         while True:
             presence_update(ws)
             time.sleep(10)
-    except AttributeError:
-        pass
     except Exception:
-        pass
+        print("\u001b[33;1mDisconnected! Trying to reconnect...\u001b[0m")
