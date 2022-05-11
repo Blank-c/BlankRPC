@@ -6,8 +6,7 @@
 > Read "READmeFIRST.txt"
 
 ## _Features_
-- Custom image and title.
-- Custom start time.
+- Custom image and name.
 - Custom party size.
-- Custom details of the game.
-- Custom state of the game.
+- Custom details.
+- Custom state.
